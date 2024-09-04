@@ -19,7 +19,7 @@ public class PursePanel extends JPanel
         purse = new Purse();
 
 
-        setPreferredSize(new Dimension(400, 250));
+        setPreferredSize(new Dimension(300, 400));
 
         JPanel panel = new JPanel();
 
@@ -32,26 +32,35 @@ public class PursePanel extends JPanel
     {
         super.paintComponent(g);
 
-        int x = 70;
-        int y = 10;
 
-        for (Map.Entry<Denomination, Integer> entry : purse.cash.entrySet())
+        int y = 20;
+
+        for (Denomination denomination : purse.order)
         {
-            Denomination denomination = entry.getKey();
+            Integer amount = purse.cash.get(denomination);
 
-            Integer amount = entry.getValue();
             String filename = denomination.image_filename();
 
             image = new ImageIcon(filename).getImage();
 
-            g.drawImage(image, x, y, null);
+            int x = 70;
 
-            x += 30;
+            if (amount > 0)
+            {
+                for (Integer count = 0; count < amount; count++)
+                {
+                    g.drawImage(image, x, y, null);
+                    x -= 5;
+                }
+            }
+
+
+            x = 100;
+
             String money = amount + " " + denomination.name() + " " + denomination.form();
             g.drawString(money, x, y+10);
 
-            x = 70;
-            y += 20;
+            y += 30;
         }
     }
 }

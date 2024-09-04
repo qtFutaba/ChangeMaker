@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Purse
 {
     Map<Denomination, Integer> cash = new HashMap<Denomination, Integer>();
+    List<Denomination> order = new ArrayList<>();
 
     Denomination hundred = new Denomination("One Hundred", 100, "Dollar Bill", "src/images/hundred.png");
     Denomination fifty = new Denomination("Fifty", 50, "Dollar Bill", "src/images/fifty.png");
@@ -30,6 +33,17 @@ public class Purse
         cash.put(dime, 0);
         cash.put(nickel, 0);
         cash.put(penny, 0);
+
+        order.add(hundred);
+        order.add(fifty);
+        order.add(twenty);
+        order.add(ten);
+        order.add(five);
+        order.add(one);
+        order.add(quarter);
+        order.add(dime);
+        order.add(nickel);
+        order.add(penny);
     }
     public void add(Denomination type, Integer amount)
     {
@@ -45,15 +59,10 @@ public class Purse
     public double getValue()
     {
         double total = 0;
-
-        for (Map.Entry<Denomination, Integer> entry : cash.entrySet())
-        {
-            Denomination denomination = entry.getKey();
-            Integer amount = entry.getValue();
-
+        for (Denomination denomination : order) {
+            Integer amount = cash.get(denomination);
             total += denomination.amount() * amount;
         }
-
         return total;
     }
 
@@ -61,10 +70,9 @@ public class Purse
     {
         String string = "";
 
-        for (Map.Entry<Denomination, Integer> entry : cash.entrySet())
+        for (Denomination denomination : order)
         {
-            Denomination denomination = entry.getKey();
-            Integer amount = entry.getValue();
+            Integer amount = cash.get(denomination);
 
             String money = amount + " " + denomination.name() + " " + denomination.form();
 

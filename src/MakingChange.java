@@ -11,12 +11,12 @@ public class MakingChange extends JFrame
         this.setTitle("MakingChange");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
 
         RegisterPanel registerPanel = new RegisterPanel();
-        this.add(registerPanel);
+        this.add(registerPanel,BorderLayout.NORTH);
 
-        this.setSize(500,500);
+        this.setSize(400,450);
         //this.pack();
         this.setVisible(true);
     }

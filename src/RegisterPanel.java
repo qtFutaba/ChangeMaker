@@ -41,8 +41,6 @@ public class RegisterPanel extends JPanel
 
     public RegisterPanel()
     {
-        setLayout (new GridLayout(2,1));
-
         //INPUT
         inputPanel = new JPanel();
 
@@ -61,6 +59,6 @@ public class RegisterPanel extends JPanel
 
         //DISPLAY PANEL
         changePanel = new PursePanel();
-        this.add(changePanel);
+        this.add(changePanel,BorderLayout.CENTER);
     }
 }

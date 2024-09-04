@@ -20,19 +20,19 @@ public class Register
         int pennies= 0;
 
         //BILLS
-        while (cashIn >= 100)
+        while (Math.ceil(cashIn) >= 100)
         {
             cashIn -= 100;
             hundreds++;
         }
 
-        while (cashIn >= 50)
+        while (Math.ceil(cashIn) >= 50)
         {
             cashIn -= 50;
             fifties++;
         }
 
-        while (cashIn >= 20)
+        while (Math.ceil(cashIn) >= 20)
         {
             cashIn -= 20;
             twenties++;
@@ -82,6 +82,16 @@ public class Register
             pennies++;
         }
 
+        if (cashIn > 0)
+        {
+            pennies++;
+
+            if(pennies >= 5)
+            {
+                pennies = 0;
+                nickels++;
+            }
+        }
 
         System.out.println("Minimum coins to make $" + cash);
         System.out.println("Hundreds: " + hundreds);
